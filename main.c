@@ -6,7 +6,7 @@
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 18:00:48 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/11 15:00:29 by vfurmane         ###   ########.fr       */
+/*   Updated: 2020/11/11 15:55:45 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		main(int argc, char **argv)
 		if (argc == 1)
 			continue_solve = 0;
 		else
-			continue_solve = i < argc - 1;
+			continue_solve = i < argc;
 	}
 	ft_free_maze(maze, config);
 	return (0);
