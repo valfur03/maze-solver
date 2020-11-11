@@ -6,7 +6,7 @@
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 18:17:20 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/11 14:47:23 by vfurmane         ###   ########.fr       */
+/*   Updated: 2020/11/11 16:40:24 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	ft_draw_path(int **maze, t_maze config, t_coord cursor)
 		new_cursor = ft_move_cursor(cursor, adj_path_index++, config);
 		if (maze[new_cursor.y][new_cursor.x] < current_path_index
 				&& maze[new_cursor.y][new_cursor.x] > 0)
+		{
 			ft_draw_path(maze, config, new_cursor);
+			break ;
+		}
 	}
 }
 
@@ -48,7 +51,9 @@ int		ft_solve(int **maze, int path_index, t_maze config, t_coord cursor)
 	int		adj_path_index;
 	t_coord	new_cursor;
 
-	if (maze[cursor.y][cursor.x] != 0)
+	if (maze[cursor.y][cursor.x] < 0)
+		return (0);
+	if (maze[cursor.y][cursor.x] > 0 && maze[cursor.y][cursor.x] < path_index)
 		return (0);
 	maze[cursor.y][cursor.x] = path_index;
 	if (cursor.x == config.start.x && cursor.y == config.start.y)
