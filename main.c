@@ -6,7 +6,7 @@
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 18:00:48 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/11 16:03:00 by vfurmane         ###   ########.fr       */
+/*   Updated: 2020/11/11 16:42:00 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		main(int argc, char **argv)
 	continue_solve = 1;
 	while (continue_solve)
 	{
-		if (argc >= 2)
+		if (argc > 2)
 			ft_print_title(argv[i], i);
 		maze = ft_get_maze(argc >= 2 ? argv[i] : NULL, &config);
 		ft_prepare_solve(cursor, config, maze);
