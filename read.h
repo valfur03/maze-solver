@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solver.h                                           :+:      :+:    :+:   */
+/*   read.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 18:16:01 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/11 11:39:05 by vfurmane         ###   ########.fr       */
+/*   Created: 2020/11/10 21:52:34 by vfurmane          #+#    #+#             */
+/*   Updated: 2020/11/10 22:11:12 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLVER_H
-# define SOLVER_H
+#ifndef READ_H
+# define READ_H
 
-# include "coord.h"
-# include "maze.h"
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include "str.h"
+# define BUF_SIZE 4096
 
-int	ft_solve(int **maze, int path_index, t_maze config, t_coord cursor);
+char	*ft_read_file(char *file);
 
 #endif

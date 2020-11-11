@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solver.h                                           :+:      :+:    :+:   */
+/*   str.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 18:16:01 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/11 11:39:05 by vfurmane         ###   ########.fr       */
+/*   Created: 2020/11/10 22:00:03 by vfurmane          #+#    #+#             */
+/*   Updated: 2020/11/10 22:29:36 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLVER_H
-# define SOLVER_H
+#ifndef STR_H
+# define STR_H
 
-# include "coord.h"
-# include "maze.h"
+# include <stdlib.h>
 
-int	ft_solve(int **maze, int path_index, t_maze config, t_coord cursor);
+char	*ft_strdupcat(char *dest, char *src);
+int		ft_atoi(const char *str);
 
 #endif

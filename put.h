@@ -6,7 +6,7 @@
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 20:32:19 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/10 21:25:21 by vfurmane         ###   ########.fr       */
+/*   Updated: 2020/11/11 12:29:25 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include "solver.h"
 
-void	ft_print_maze(int maze[5][5], t_maze config);
+void	ft_putstr(char *str);
+void	ft_print_maze(int **maze, t_maze config);
 
 #endif

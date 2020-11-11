@@ -6,16 +6,16 @@
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 18:12:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/10 18:12:21 by vfurmane         ###   ########.fr       */
+/*   Updated: 2020/11/11 14:45:41 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CORD_H
-# define CORD_H
+#ifndef COORD_H
+# define COORD_H
 
 typedef struct	s_coord {
 	int	x;
 	int	y;
-} t_coord;
+}				t_coord;
 
 #endif

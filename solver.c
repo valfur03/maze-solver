@@ -6,12 +6,11 @@
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 18:17:20 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/10 20:32:15 by vfurmane         ###   ########.fr       */
+/*   Updated: 2020/11/11 14:47:23 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solver.h"
-#include <stdio.h> /* ===== DELETE ===== */
 
 t_coord	ft_move_cursor(t_coord cursor, int adj_path_index, t_maze config)
 {
@@ -21,12 +20,12 @@ t_coord	ft_move_cursor(t_coord cursor, int adj_path_index, t_maze config)
 		cursor.x += 1;
 	else if (adj_path_index == 2 && cursor.y < config.height - 1)
 		cursor.y += 1;
-	else if (adj_path_index == 3 && cursor.x > 0)	
+	else if (adj_path_index == 3 && cursor.x > 0)
 		cursor.x -= 1;
 	return (cursor);
 }
 
-void	ft_draw_path(int maze[5][5], t_maze config, t_coord cursor)
+void	ft_draw_path(int **maze, t_maze config, t_coord cursor)
 {
 	int		adj_path_index;
 	int		current_path_index;
@@ -44,7 +43,7 @@ void	ft_draw_path(int maze[5][5], t_maze config, t_coord cursor)
 	}
 }
 
-int		ft_solve(int maze[5][5], int path_index, t_maze config, t_coord cursor)
+int		ft_solve(int **maze, int path_index, t_maze config, t_coord cursor)
 {
 	int		adj_path_index;
 	t_coord	new_cursor;
