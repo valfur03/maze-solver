@@ -6,14 +6,18 @@
 #    By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/11 15:14:26 by vfurmane          #+#    #+#              #
-#    Updated: 2020/11/11 15:22:21 by vfurmane         ###   ########.fr        #
+#    Updated: 2020/11/12 10:33:57 by vfurmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		= main.c maze.c parse.c put.c read.c solver.c str.c
+G_SRCS		= $(addprefix generator/, main.c maze.c str.c)
 OBJS		= $(SRCS:.c=.o)
+G_OBJS		= $(G_SRCS:.c=.o)
 INCL		= .
+G_INCL		= ./generator
 NAME		= masolve
+G_NAME		= magen
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
@@ -21,17 +25,23 @@ RM			= rm -f
 %.o:		%.c
 			$(CC) $(CFLAGS) -c $< -o $@ -I $(INCL)
 
-all:		$(NAME)
+all:		$(NAME) $(G_NAME)
 
 $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) $(OBJS) -o $@
 
+$(G_NAME):	$(G_OBJS)
+			$(CC) $(CFLAGS) $(G_OBJS) -o $(G_INCL)/$@
+
 clean:
 			$(RM) $(OBJS)
 
-fclean:		clean
-			$(RM) $(NAME)
+g_clean:
+			$(RM) $(G_OBJS)
+
+fclean:		clean g_clean
+			$(RM) $(NAME) && $(RM) $(G_INCL)/$(G_NAME)
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean g_clean fclean re
