@@ -6,21 +6,27 @@
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 22:36:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/11 14:46:28 by vfurmane         ###   ########.fr       */
+/*   Updated: 2020/11/14 15:12:34 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-t_maze	ft_config_maze(char *str, t_maze *config)
+t_maze	*ft_config_maze(char *str, t_maze *config)
 {
 	int	i;
 	int	len;
 
 	config->height = ft_atoi(str);
+	if (config->height == 0)
+		return (NULL);
 	i = 0;
 	while (str[i] >= '0' && str[i] <= '9')
 		i++;
+	if ((!str[i] || !str[i + 1] || !str[i + 2] || !str[i + 3] ||
+			!str[i + 5]) || (str[i] == '\n' || str[i + 1] == '\n' ||
+			str[i + 2] == '\n') || str[i + 3] != '\n')
+		return (NULL);
 	config->chrs.empty = str[i++];
 	config->chrs.flag = str[i++];
 	config->chrs.filled = str[i++];
@@ -32,7 +38,7 @@ t_maze	ft_config_maze(char *str, t_maze *config)
 		len++;
 	config->width = len;
 	config->start.x = -1;
-	return (*config);
+	return (config);
 }
 
 void	ft_add_flag(t_maze *config, int y, int x)
@@ -107,6 +113,8 @@ int		**ft_parse_maze(char *buffer, t_maze *config)
 	if (!(maze = malloc(sizeof(*maze) * config->height)))
 		return (NULL);
 	if (!ft_parse_map(buffer, maze, config))
+		return (NULL);
+	if (config->start.x == -1)
 		return (NULL);
 	return (maze);
 }
