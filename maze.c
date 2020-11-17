@@ -6,13 +6,13 @@
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 21:35:50 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/17 09:53:49 by vfurmane         ###   ########.fr       */
+/*   Updated: 2020/11/17 12:07:01 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "maze.h"
 
-int	**ft_get_maze(char *file, t_maze *config)
+int		**ft_get_maze(char *file, t_maze *config)
 {
 	int		**maze;
 	char	*buffer;

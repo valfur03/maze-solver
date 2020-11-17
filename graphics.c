@@ -6,7 +6,7 @@
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 20:14:34 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/17 11:11:42 by vfurmane         ###   ########.fr       */
+/*   Updated: 2020/11/17 12:06:33 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ SDL_Window		*ft_create_window(char *name, t_maze config)
 	SDL_Window	*win;
 
 	win = SDL_CreateWindow(name, SDL_WINDOWPOS_UNDEFINED,
-			SDL_WINDOWPOS_UNDEFINED, config.width * 20, config.height * 20,
+			SDL_WINDOWPOS_UNDEFINED, config.width * 15, config.height * 15,
 			SDL_WINDOW_SHOWN);
 	return (win);
 }
@@ -30,37 +30,36 @@ SDL_Renderer	*ft_create_renderer(SDL_Window *win)
 	return (renderer);
 }
 
-void			ft_print_maze_win(SDL_Renderer *renderer, int **maze, t_maze config)
+void			ft_print_maze_win(SDL_Renderer *renderer, int **maze,
+					t_maze config)
 {
 	int			x;
 	int			y;
 	SDL_Rect	rectangle;
 
-	rectangle.w = 20;
-	rectangle.h = 20;
-	y = 0;
-	while (y < config.height)
+	rectangle.w = 15;
+	rectangle.h = 15;
+	y = -1;
+	while (++y < config.height)
 	{
-		x = 0;
-		while (x < config.width)
+		x = -1;
+		while (++x < config.width)
 		{
-			rectangle.x = x * 20;
-			rectangle.y = y * 20;
+			rectangle.x = x * 15;
+			rectangle.y = y * 15;
 			if (maze[y][x] >= 0)
 				SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 			else if (maze[y][x] == -1)
 				SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 			else if (maze[y][x] == -2)
 				SDL_SetRenderDrawColor(renderer, 255, 127, 40, 255);
-			x++;
 			SDL_RenderFillRect(renderer, &rectangle);
 		}
-		y++;
 	}
 	SDL_RenderPresent(renderer);
 }
 
-void		ft_win_maze(char *name, t_maze config, int **maze)
+void			ft_win_maze(char *name, t_maze config, int **maze)
 {
 	SDL_Window		*win;
 	SDL_Renderer	*renderer;
