@@ -6,7 +6,7 @@
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 21:35:50 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/11 15:02:43 by vfurmane         ###   ########.fr       */
+/*   Updated: 2020/11/17 09:53:49 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,17 @@ int	**ft_get_maze(char *file, t_maze *config)
 		return (NULL);
 	free(buffer);
 	return (maze);
+}
+
+void	ft_free_maze(int **maze, t_maze config)
+{
+	int	i;
+
+	if (maze)
+	{
+		i = 0;
+		while (i < config.height)
+			free(maze[i++]);
+		free(maze);
+	}
 }

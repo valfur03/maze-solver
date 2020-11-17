@@ -6,7 +6,7 @@
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 18:00:48 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/11 16:42:00 by vfurmane         ###   ########.fr       */
+/*   Updated: 2020/11/17 11:55:41 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "solver.h"
 #include "put.h"
 #include "maze.h"
+#include "graphics.h"
+#include "args.h"
 
 void	ft_print_title(char *title, int i)
 {
@@ -32,47 +34,52 @@ void	ft_prepare_solve(t_coord cursor, t_maze config, int **maze)
 		cursor.x = config.end.x;
 		cursor.y = config.end.y;
 		ft_solve(maze, 1, config, cursor);
-		ft_print_maze(maze, config);
 	}
 	else
 		ft_putstr("Error\n");
 }
 
-void	ft_free_maze(int **maze, t_maze config)
+void	ft_loop_solve(int filec, char **filev, int i, int graphical)
 {
-	int	i;
+	int			**maze;
+	t_maze		config;
+	t_coord		cursor;
 
-	if (maze)
+	maze = ft_get_maze(filec >= 1 ? filev[i] : NULL, &config);
+	ft_prepare_solve(cursor, config, maze);
+	if (graphical)
+		ft_win_maze(filec >= 1 ? filev[i] : NULL, config, maze);
+	else
 	{
-		i = 0;
-		while (i < config.height)
-			free(maze[i++]);
-		free(maze);
+		if (filec >= 2)
+			ft_print_title(filev[i], i);
+		ft_print_maze(maze, config);
 	}
+	ft_free_maze(maze, config);
 }
 
 int		main(int argc, char **argv)
 {
 	int		i;
-	int		**maze;
+	int		graphical;
 	int		continue_solve;
-	t_maze	config;
-	t_coord	cursor;
+	int		filec;
+	char	**filev;
 
+	SDL_Init(SDL_INIT_VIDEO);
+	graphical = ft_init(argc, argv, &filec, &filev);
 	i = 1;
 	continue_solve = 1;
 	while (continue_solve)
 	{
-		if (argc > 2)
-			ft_print_title(argv[i], i);
-		maze = ft_get_maze(argc >= 2 ? argv[i] : NULL, &config);
-		ft_prepare_solve(cursor, config, maze);
-		i++;
-		if (argc == 1)
+		ft_loop_solve(filec, filev, i - 1, graphical);
+		if (filec == 0)
 			continue_solve = 0;
 		else
-			continue_solve = i < argc;
+			continue_solve = i < filec;
+		i++;
 	}
-	ft_free_maze(maze, config);
+	SDL_Quit();
+	free(filev);
 	return (0);
 }

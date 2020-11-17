@@ -1,41 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maze.h                                             :+:      :+:    :+:   */
+/*   args.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfurmane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 21:46:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2020/11/17 09:54:04 by vfurmane         ###   ########.fr       */
+/*   Created: 2020/11/17 10:06:32 by vfurmane          #+#    #+#             */
+/*   Updated: 2020/11/17 11:02:45 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAZE_H
-# define MAZE_H
+#ifndef ARGS_H
+# define ARGS_H
 
-# include <unistd.h>
-# include "coord.h"
-# include "read.h"
-# include "str.h"
-# include "parse.h"
+# include <stdlib.h>
 
-typedef struct	s_chrs
-{
-	char	empty;
-	char	filled;
-	char	flag;
-}				t_chrs;
-
-typedef struct	s_maze
-{
-	int		width;
-	int		height;
-	t_chrs	chrs;
-	t_coord start;
-	t_coord end;
-}				t_maze;
-
-int				**ft_get_maze(char *file, t_maze *config);
-void			ft_free_maze(int **maze, t_maze config);
+int		ft_init(int argc, char **argv, int *filec, char ***filev);
 
 #endif
